@@ -12,16 +12,19 @@ public class Square {
 
     private Piece piece;
     private Color color;
+    public int row;
+    public int column;
 
-    public Square(Piece piece, Color color) {
+    public Square(Piece piece, Color color, int row, int column) {
         this.piece = piece;
         this.color = color;
+        this.row = row;
+        this.column = column;
     }
 
     protected Piece getPiece() { return piece; }
 
     protected Color getColor() { return color;}
-
 
     protected void setPiece(Piece piece) {
         this.piece = piece;

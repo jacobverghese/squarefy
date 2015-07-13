@@ -1,5 +1,6 @@
 package squarefy.src.pieces;
 
+import squarefy.src.board.Board;
 import squarefy.src.board.Square;
 
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 /**
  * A knight is valued at 3 points
  */
+
 public class Knight extends Piece {
 
     public Knight(Color color, char file, int rank) {
@@ -21,11 +23,15 @@ public class Knight extends Piece {
     }
 
     @Override
-    public ArrayList<Square> getMoves() {
-        for(int i = 2; i >= -2; i = i - 1){
-            moves.add(board[_rank + i][_file - 1]);
-            moves.add(board[_rank + i][_file + 1]);
-        }
+    public ArrayList<Square> getMoves(){
+        if(_rank < 6 && _file > 0) moves.add(board[_rank + 2][_file - 1]);
+        if(_rank < 6 && _file < 7) moves.add(board[_rank + 2][_file + 1]);
+        if(_rank < 7 && _file > 2) moves.add(board[_rank + 1][_file - 2]);
+        if(_rank < 7 && _file < 6) moves.add(board[_rank + 1][_file + 2]);
+        if(_rank > 1 && _file > 0) moves.add(board[_rank - 2][_file - 1]);
+        if(_rank > 1 && _file < 7) moves.add(board[_rank - 2][_file + 1]);
+        if(_rank > 0 && _file > 1) moves.add(board[_rank - 1][_file - 2]);
+        if(_rank > 0 && _file < 6) moves.add(board[_rank - 1][_file + 2]);
         validate(moves);
         return moves;
     }
@@ -42,7 +48,10 @@ public class Knight extends Piece {
 
     @Override
     public void validate(ArrayList<Square> moves) {
-
+        Square source = this.getSquare();
+        for(Square square : moves){
+            if(Board.isBlocked(source, square)) moves.remove(square);
+        }
     }
 
 

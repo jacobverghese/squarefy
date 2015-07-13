@@ -62,6 +62,10 @@ public abstract class Piece implements Playable {
         else this.color = null; // null represents an invalid color
     }
 
+    protected Square getSquare(){
+        return board[_rank][_file];
+    }
+
     public int getRank() {
         return rank;
     }

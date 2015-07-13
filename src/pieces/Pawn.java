@@ -14,7 +14,7 @@ public class Pawn extends Piece {
 
     public Pawn(Color color, char file, int rank) {
         super(color, color == Color.WHITE ? 1 : -1, file, rank);
-        direction= (color == Color.WHITE) ? 1 : -1;
+        direction = (color == Color.WHITE) ? 1 : -1;
         canMove = true;
         canCapture = false;
     }
@@ -43,9 +43,9 @@ public class Pawn extends Piece {
 
     @Override
     public void validate(ArrayList<Square> moves) {
-        moves.add(board[transform(rank) + direction][transform(file)]);
-        moves.add(board[transform(rank) + 2*direction][transform(file)]);
-
+        for(Square square : moves){
+            if(!square.isEmpty()) moves.remove(square);
+        }
     }
 
 }
