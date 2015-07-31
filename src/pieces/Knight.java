@@ -32,7 +32,7 @@ public class Knight extends Piece {
         if(_rank > 1 && _file < 7) moves.add(board[_rank - 2][_file + 1]);
         if(_rank > 0 && _file > 1) moves.add(board[_rank - 1][_file - 2]);
         if(_rank > 0 && _file < 6) moves.add(board[_rank - 1][_file + 2]);
-        validate(moves);
+        //validate(moves);
         return moves;
     }
 
@@ -50,7 +50,8 @@ public class Knight extends Piece {
     public void validate(ArrayList<Square> moves) {
         Square source = this.getSquare();
         for(Square square : moves){
-            if(Board.isBlocked(source, square)) moves.remove(square);
+            if(Board.isKingChecked(source)) moves.remove(square);
+
         }
     }
 

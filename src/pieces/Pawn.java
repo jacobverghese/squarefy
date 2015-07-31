@@ -1,5 +1,6 @@
 package squarefy.src.pieces;
 
+import squarefy.src.board.Board;
 import squarefy.src.board.Square;
 
 import java.awt.*;
@@ -43,8 +44,9 @@ public class Pawn extends Piece {
 
     @Override
     public void validate(ArrayList<Square> moves) {
+
         for(Square square : moves){
-            if(!square.isEmpty()) moves.remove(square);
+            if(!square.isEmpty() || Board.isBlocked(this.getSquare(), square)) moves.remove(square);
         }
     }
 

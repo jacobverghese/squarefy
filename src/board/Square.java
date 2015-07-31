@@ -22,12 +22,19 @@ public class Square {
         this.column = column;
     }
 
-    protected Piece getPiece() { return piece; }
+    protected Piece getPiece() {
+
+        return piece;
+    }
 
     protected Color getColor() { return color;}
 
     protected void setPiece(Piece piece) {
         this.piece = piece;
+        if(piece != null){
+            piece.setFile((char)(this.column + 65));
+            piece.setRank(this.row + 1);
+        }
     }
 
     protected void setColor(Color c) {

@@ -55,6 +55,7 @@ public abstract class Piece implements Playable {
     public void setFile(char file) {
         if(file >= 'A' && file <= 'H') this.file = file; // Only allows the game to set valid files for pieces
         else this.file = ' '; // A blank space for file represents an out-of-range square
+        _file = transform(file);
     }
 
     public void setColor(Color color) {
@@ -62,7 +63,7 @@ public abstract class Piece implements Playable {
         else this.color = null; // null represents an invalid color
     }
 
-    protected Square getSquare(){
+    public Square getSquare(){
         return board[_rank][_file];
     }
 
@@ -73,13 +74,14 @@ public abstract class Piece implements Playable {
     public void setRank(int rank) {
         if(rank >= 1 && rank <= 8) this.rank = rank; // Only allows the game to set valid ranks for the pieces
         else this.rank = 0; // 0 represents an out-of-range square
+        _rank = transform(rank);
     }
 
-    public int transform(char file){
+    public static int transform(char file){
         return (int) file - 65;
     }
 
-    public int transform(int rank){
+    public static int transform(int rank){
         return rank - 1;
     }
 }

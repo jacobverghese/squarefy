@@ -22,6 +22,10 @@ public class Bishop extends Piece {
 
     @Override
     public ArrayList<Square> getMoves() {
+        int constraint = Math.min(_rank, _file), i, j;
+        for(i = _rank - constraint, j = _file + constraint; i <= _file + constraint; i= i + 1, j = j - 1){
+            moves.add(board[i][j]);
+        }
         return moves;
     }
 
