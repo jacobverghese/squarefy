@@ -1,2 +1,2 @@
 # squarefy
-A object oriented chess engine in Java
+An object oriented chess engine in Java
